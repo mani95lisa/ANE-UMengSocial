@@ -35,6 +35,7 @@
 		3CA2969A180933D400391033 /* UMSnsAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CA2968B180933D400391033 /* UMSnsAccountViewController.xib */; };
 		3CA2969B180933D400391033 /* UMSShareListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CA2968C180933D400391033 /* UMSShareListController.xib */; };
 		3CA2969C180933D400391033 /* UMSocialSDKResourcesNew.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3CA2968D180933D400391033 /* UMSocialSDKResourcesNew.bundle */; };
+		3CA2969E1809659200391033 /* UMSocialSDKResourcesNew.bundle in Copy Files */ = {isa = PBXBuildFile; fileRef = 3CA2968D180933D400391033 /* UMSocialSDKResourcesNew.bundle */; };
 		3CF888E2179C2D5D008E4250 /* UMSCommentDetailController.nib in Copy Files */ = {isa = PBXBuildFile; fileRef = 3CF888D7179C2D5D008E4250 /* UMSCommentDetailController.nib */; };
 		3CF888E3179C2D5D008E4250 /* UMSCommentInputController.nib in Copy Files */ = {isa = PBXBuildFile; fileRef = 3CF888D8179C2D5D008E4250 /* UMSCommentInputController.nib */; };
 		3CF888E4179C2D5D008E4250 /* UMSCommentInputControlleriPad.nib in Copy Files */ = {isa = PBXBuildFile; fileRef = 3CF888D9179C2D5D008E4250 /* UMSCommentInputControlleriPad.nib */; };
@@ -58,6 +59,7 @@
 				3CF888E2179C2D5D008E4250 /* UMSCommentDetailController.nib in Copy Files */,
 				3CF888E3179C2D5D008E4250 /* UMSCommentInputController.nib in Copy Files */,
 				3CF888E4179C2D5D008E4250 /* UMSCommentInputControlleriPad.nib in Copy Files */,
+				3CA2969E1809659200391033 /* UMSocialSDKResourcesNew.bundle in Copy Files */,
 				3CF888E5179C2D5D008E4250 /* UMShareEditViewController.nib in Copy Files */,
 				3CF888E6179C2D5D008E4250 /* UMShareEditViewControlleriPad.nib in Copy Files */,
 				3CF888E7179C2D5D008E4250 /* UMSLoginViewController.nib in Copy Files */,
@@ -427,6 +429,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CA2969C180933D400391033 /* UMSocialSDKResourcesNew.bundle in Resources */,
 				3C7AE6E51797FC590073E93E /* UMSocialBarViewController.xib in Resources */,
 				3C7AE6E61797FC590073E93E /* UMSocialLoginViewController.xib in Resources */,
 				3C7AE6E71797FC590073E93E /* UMSocialSnsViewController.xib in Resources */,
@@ -439,7 +442,6 @@
 				3CA29699180933D400391033 /* UMSLoginViewController.xib in Resources */,
 				3CA2969A180933D400391033 /* UMSnsAccountViewController.xib in Resources */,
 				3CA2969B180933D400391033 /* UMSShareListController.xib in Resources */,
-				3CA2969C180933D400391033 /* UMSocialSDKResourcesNew.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
