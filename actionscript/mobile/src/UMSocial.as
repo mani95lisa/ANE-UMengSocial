@@ -6,7 +6,7 @@ package
 
 
 	/**
-	 *  使用时必须加入如下权限，APP_KEY在配置文件里写好
+	 *  Android使用时必须加入如下权限，APP_KEY在配置文件里写好
 	 *  时间都是毫秒
 	 *
 	 *  <application ……>
@@ -71,7 +71,7 @@ package
 		}
 
 		/**
-		 * 控制分享条是否显示
+		 * 控制分享条是否显示，因为分享条初始化的时候可能有卡顿，所以初始化的时候是看不见的
 		 * @param visible
 		 */
 		public function status(visible:Boolean):void

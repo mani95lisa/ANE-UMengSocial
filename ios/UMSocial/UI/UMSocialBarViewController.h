@@ -8,14 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "UMSocial.h"
-#import "UMSocialBar.h"
 
 @interface UMSocialBarViewController : UIViewController<UMSocialUIDelegate>
 {
     UMSocialBar *_socialBar;
-    UIWebView   *_webView;
 }
-
--(void) dataID:(NSString*)dataID;
 
 @end

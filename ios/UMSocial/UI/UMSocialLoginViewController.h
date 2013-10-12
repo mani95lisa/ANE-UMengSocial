@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UMSocial.h"
 
 @interface UMSocialLoginViewController : UIViewController
 <
     UITableViewDataSource,
     UITableViewDelegate,
-    UIActionSheetDelegate
+    UIActionSheetDelegate,
+    UMSocialUIDelegate
 >
 {
     IBOutlet UITableView *_snsTableView;
