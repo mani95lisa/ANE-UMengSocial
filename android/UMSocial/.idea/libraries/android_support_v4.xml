@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="android-support-v4">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../libs/android-support-v4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../libs/FlashRuntimeExtensions.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../libs/httpmime-4.1.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../libs/libammsdk.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../libs/umeng_social_sdk.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

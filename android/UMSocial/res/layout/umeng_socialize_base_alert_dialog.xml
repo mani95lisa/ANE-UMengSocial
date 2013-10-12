@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/umeng_socialize_bind_bg" >
+
+    <TextView
+        android:id="@+id/umeng_socialize_tipinfo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal"
+        android:text="@string/user_account_to_comment"
+        android:visibility="gone"
+        android:textColor="#ffffff" />
+
+    <LinearLayout
+        android:id="@+id/umeng_socialize_alert_body"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/umeng_socialize_tipinfo"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical"
+        android:paddingBottom="5dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="5dp" >
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/umeng_socialize_alert_footer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/umeng_socialize_alert_body"
+        android:layout_marginBottom="18dp"
+        android:orientation="vertical"
+        android:paddingBottom="5dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp" >
+
+    </LinearLayout>
+
+</RelativeLayout>

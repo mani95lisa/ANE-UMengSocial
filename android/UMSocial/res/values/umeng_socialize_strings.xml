@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+
+    <string name="user_account_to_comment" translatable="false">使用已有账号发表评论</string>
+    <string name="qq_zone" translatable="false">QQ空间</string>
+    <string name="tencent" translatable="false">腾讯微博</string>
+    <string name="sina" translatable="false">新浪微博</string>
+    <string name="renren" translatable="false">人人网</string>
+    <string name="douban" translatable="false">豆瓣</string>
+    <string name="hide_name_to_comment" translatable="false">匿名评论</string>
+    <string name="cancel1" translatable="false">取消</string>
+    <string name="user_do_not_share_location_information" translatable="false">用户未分享地理位置</string>
+    <string name="loading_more" translatable="false">正在加载更多</string>
+    <string name="loading_failed" translatable="false">网络加载失败，请点击重试。</string>
+    <string name="follow_official_weibo" translatable="false">关注官方微博</string>
+    <string name="sign_in" translatable="false">登陆账号</string>
+    <string name="star_lucky" translatable="false">星座运势新解</string>
+    <string name="click_to_sign_in" translatable="false">点击登录</string>
+    <string name="share_setting" translatable="false">分享设置</string>
+    <string name="sign_in_account" translatable="false">登录账号</string>
+    <string name="pipilu_100_life" translatable="false">皮皮鲁送你100条命</string>
+
+    <string name="pull_to_refresh_pull_label" translatable="false">向下拉动可以刷新</string>
+    <string name="pull_to_refresh_release_label" translatable="false">松开可以刷新</string>
+    <string name="pull_to_refresh_refreshing_label" translatable="false">加载中...</string>
+    <string name="pull_to_refresh_tap_label" translatable="false">点击刷新</string>
+    <string name="umeng_socialize_network_break_alert" translatable="false">请连接网络后再尝试！</string>
+    <string name="umeng_socialize_comment" translatable="false">评论</string>
+    <string name="umeng_socialize_comment_detail" translatable="false">评论详情</string>
+    <string name="umeng_socialize_back" translatable="false">返回</string>
+    <string name="umeng_socialize_near_At" translatable="false">最近\@的好友</string>
+    <string name="umeng_socialize_friends" translatable="false">关注的好友</string>
+    <string name="umeng_socialize_send" translatable="false">发布</string>
+    <string name="umeng_socialize_tip_blacklist" translatable="false">对不起，因为违反了用户协议您已被禁言.</string>
+    <string name="umeng_socialize_tip_loginfailed" translatable="false">登录失败...</string>
+    <string name="umeng_socialize_msg_sec" translatable="false">秒前</string>
+    <string name="umeng_socialize_msg_min" translatable="false">分钟前</string>
+    <string name="umeng_socialize_msg_hor" translatable="false">小时前</string>
+    
+    <string name="umeng_socialize_ucenter_login_title_guide" translatable="false">游客登录</string>
+    <string name="umeng_socialize_ucenter_login_title_platform" translatable="false">登录帐号</string>
+
+    <dimen name="alphabet_size">12dip</dimen>
+    
+    <dimen name="umeng_socialize_pad_window_height">350dip</dimen>
+    <dimen name="umeng_socialize_pad_window_width">580dip</dimen>
+	<string name="umeng_socialize_share_content">友盟社会化组件可以让移动应用快速具备社会化分享、登录、评论、喜欢等功能，并提供实时、全面的社会化数据统计分析服务</string>
+	<string name="umeng_socialize_login_qq">QQ空间</string>
+	<string name="umeng_socialize_login">登录</string>
+	<string name="umeng_socialize_text_choose_account">选择已有帐号登录</string>
+	<string name="umeng_socialize_text_authorize">授权</string>
+	<string name="umeng_socialize_text_unauthorize">未授权</string>
+	<string name="umeng_socialize_text_ucenter">个人中心</string>
+	<string name="umeng_socialize_text_login_fail">登录失败了，请重试</string>
+	<string name="umeng_socialize_text_comment_hint">说点什么吧...</string>
+	<string name="umeng_socialize_text_friend_list">好友列表</string>
+	<string name="umeng_socialize_text_visitor">游客</string>
+</resources>

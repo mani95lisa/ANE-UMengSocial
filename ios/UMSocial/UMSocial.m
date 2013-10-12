@@ -1,0 +1,187 @@
+//
+//  UMengSocial.m
+//  UMengSocial
+//
+//  Created by mani on 13-7-17.
+//  Copyright (c) 2013年 yeahugo. All rights reserved.
+//
+
+#import "UMSocial.h"
+#import "FlashRuntimeExtensions.h"
+#import "SocialControler.h"
+#import "UMSocialData.h"
+
+@implementation UMSocial
+
+FREObject init(FREContext context, void* funcData, uint32_t argc, FREObject argv[]){
+    NSLog(@"Call Init Function");
+    
+    const uint8_t* appKey;
+    uint32_t stringLength;
+    NSString *appKeyString = nil;
+    
+    if(argv[0] && (FREGetObjectAsUTF8(argv[0], &stringLength, &appKey) == FRE_OK)){
+        appKeyString = [NSString stringWithUTF8String:(char*)appKey];
+        [UMSocialData setAppKey:appKeyString];
+    }
+    
+    SocialControler* sc = funcData;
+    [sc initBar];
+    
+    NSLog(@"Called Init Function Finished %@", appKeyString);
+    
+    return nil;
+}
+
+FREObject status(FREContext context, void* funcData, uint32_t argc, FREObject argv[]){
+    NSLog(@"Call status Function");
+    
+    uint32_t statusInt = 0;
+    BOOL status = YES;
+    
+    if(argv[0] && (FREGetObjectAsUint32(argv[0], &statusInt)==FRE_OK)){
+        status = statusInt == 1;
+    }
+    
+    SocialControler* sc = funcData;
+    [sc status:status];
+
+    NSLog(@"Called status Function %c, %d", status, statusInt);
+    
+    return nil;
+}
+
+FREObject dataID(FREContext context, void* funcData, uint32_t argc, FREObject argv[]){
+    NSLog(@"Call dataID Function");
+    
+    const uint8_t* dataID;
+    uint32_t stringLength;
+    NSString *dataIDString = nil;
+    
+    const uint8_t* sahreText;
+    NSString *shareTextString = nil;
+    
+    const uint8_t* imageUrl;
+    NSString *imageUrlString = nil;
+    
+    const uint8_t* title;
+    NSString *titleString = nil;
+    
+    if(argv[0] && (FREGetObjectAsUTF8(argv[0], &stringLength, &dataID) == FRE_OK)){
+        dataIDString = [NSString stringWithUTF8String:(char*)dataID];
+    }
+    
+    if(argv[1] && (FREGetObjectAsUTF8(argv[1], &stringLength, &sahreText) == FRE_OK)){
+        shareTextString = [NSString stringWithUTF8String:(char*)sahreText];
+    }
+    
+    if(argv[2] && (FREGetObjectAsUTF8(argv[2], &stringLength, &imageUrl) == FRE_OK)){
+        imageUrlString = [NSString stringWithUTF8String:(char*)imageUrl];
+    }
+    
+    if(argv[3] && (FREGetObjectAsUTF8(argv[3], &stringLength, &title) == FRE_OK)){
+        titleString = [NSString stringWithUTF8String:(char*)title];
+    }
+    
+    SocialControler* sc = funcData;
+    [sc dataID:dataIDString shareText:shareTextString imageUrl:imageUrlString title:titleString];
+    
+    NSLog(@"Called dataID Function DataID: %@, shareText: %@, imageURL: %@, title: %@", dataIDString, shareTextString, imageUrlString, titleString);
+    
+    return nil;
+}
+
+FREObject share(FREContext context, void* funcData, uint32_t argc, FREObject argv[]){
+    NSLog(@"Call share Function");
+    
+    const uint8_t* dataID;
+    uint32_t stringLength;
+    NSString *dataIDString = nil;
+    
+    const uint8_t* sahreText;
+    NSString *shareTextString = nil;
+    
+    const uint8_t* imageUrl;
+    NSString *imageUrlString = nil;
+    
+    const uint8_t* title;
+    NSString *titleString = nil;
+    
+    if(argv[0] && (FREGetObjectAsUTF8(argv[0], &stringLength, &dataID) == FRE_OK)){
+        dataIDString = [NSString stringWithUTF8String:(char*)dataID];
+    }
+    
+    if(argv[1] && (FREGetObjectAsUTF8(argv[1], &stringLength, &sahreText) == FRE_OK)){
+        shareTextString = [NSString stringWithUTF8String:(char*)sahreText];
+    }
+    
+    if(argv[2] && (FREGetObjectAsUTF8(argv[2], &stringLength, &imageUrl) == FRE_OK)){
+        imageUrlString = [NSString stringWithUTF8String:(char*)imageUrl];
+    }
+    
+    if(argv[3] && (FREGetObjectAsUTF8(argv[3], &stringLength, &title) == FRE_OK)){
+        titleString = [NSString stringWithUTF8String:(char*)title];
+    }
+    
+    SocialControler* sc = funcData;
+    [sc share:dataIDString shareText:shareTextString imageUrl:imageUrlString title:titleString];
+    
+    NSLog(@"Called share Function DataID: %@, shareText: %@, imageURL: %@, title: %@", dataIDString, shareTextString, imageUrlString, titleString);
+    
+    return nil;
+}
+
+void AirUMSocialContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx, uint32_t* numFunctionsToTest,
+                             const FRENamedFunction** functionsToSet){
+    uint numOfFun = 4;
+    
+    FRENamedFunction* func = (FRENamedFunction*) malloc(sizeof(FRENamedFunction) * numOfFun);
+    *numFunctionsToTest = numOfFun;
+    
+    SocialControler* socialControler = [[SocialControler alloc] init];
+    socialControler.freContext = ctx;
+    id delegate = [[UIApplication sharedApplication] delegate];
+    UIWindow * win = [delegate window];
+    socialControler.window = win;
+    
+    FRESetContextNativeData( ctx, socialControler );
+    
+    func[0].name = (const uint8_t*) "init";
+    func[0].functionData = socialControler;
+    func[0].function = &init;
+    
+    func[1].name = (const uint8_t*) "status";
+    func[1].functionData = socialControler;
+    func[1].function = &status;
+    
+    func[2].name = (const uint8_t*) "dataID";
+    func[2].functionData = socialControler;
+    func[2].function = &dataID;
+    
+    func[3].name = (const uint8_t*) "share";
+    func[3].functionData = socialControler;
+    func[3].function = &share;
+    
+    
+    *functionsToSet = func;
+    
+    NSLog(@"Inited");
+}
+
+void UMengExtFinalizer(void* extData)
+{
+    NSLog(@"Finalize!");
+    return;
+}
+
+void AirUMSocialContextFinalizer(FREContext ctx) { }
+void AirUMSocialFinalizer(void *extData) { }
+
+void AirUMSocialInitializer(void** extDataToSet, FREContextInitializer* ctxInitializerToSet, FREContextFinalizer* ctxFinalizerToSet)
+{
+    *extDataToSet = NULL;
+    *ctxInitializerToSet = &AirUMSocialContextInitializer;
+    *ctxFinalizerToSet = &AirUMSocialContextFinalizer;
+}
+
+@end
