@@ -7,6 +7,7 @@
     <!-- All -->
     <!-- <target name="all" depends="android,ios,ios-simulator,swc-mobile,swc-default,package" description="Full build of extension"/> -->
     <target name="all" depends="ios,ios-simulator,android,swc-mobile,swc-default,package" description="Full build of extension"/>
+    <!-- <target name="ios" depends="ios,ios-simulator,android,swc-mobile,swc-default,package" description="Full build of extension"/> -->
     <!-- <target name="all" depends="android" description="Full build of extension"/> -->
 
     <!-- iOS -->

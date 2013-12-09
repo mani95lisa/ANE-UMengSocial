@@ -21,7 +21,6 @@
 		3C7AE6E51797FC590073E93E /* UMSocialBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C7AE65D1797EAC00073E93E /* UMSocialBarViewController.xib */; };
 		3C7AE6E61797FC590073E93E /* UMSocialLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C7AE6601797EAC00073E93E /* UMSocialLoginViewController.xib */; };
 		3C7AE6E71797FC590073E93E /* UMSocialSnsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C7AE6631797EAC00073E93E /* UMSocialSnsViewController.xib */; };
-		3CA2968F180933D400391033 /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3CA2966E180933D400391033 /* UMSocialLocalizable.strings */; };
 		3CA29690180933D400391033 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CA29672180933D400391033 /* TencentOpenAPI.framework */; };
 		3CA29691180933D400391033 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CA29674180933D400391033 /* libWeChatSDK.a */; };
 		3CA29692180933D400391033 /* libUMSocial_Sdk_3.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CA29682180933D400391033 /* libUMSocial_Sdk_3.1.a */; };
@@ -112,7 +111,6 @@
 		3C7AE6B71797FA010073E93E /* UMS_mutilBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UMS_mutilBar@2x.png"; sourceTree = "<group>"; };
 		3C7AE6B81797FA010073E93E /* UMS_settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UMS_settings@2x.png"; sourceTree = "<group>"; };
 		3C7AE6B91797FA010073E93E /* UMS_share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UMS_share@2x.png"; sourceTree = "<group>"; };
-		3CA2966F180933D400391033 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
 		3CA29672180933D400391033 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		3CA29674180933D400391033 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		3CA29675180933D400391033 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
@@ -433,7 +431,6 @@
 				3C7AE6E51797FC590073E93E /* UMSocialBarViewController.xib in Resources */,
 				3C7AE6E61797FC590073E93E /* UMSocialLoginViewController.xib in Resources */,
 				3C7AE6E71797FC590073E93E /* UMSocialSnsViewController.xib in Resources */,
-				3CA2968F180933D400391033 /* UMSocialLocalizable.strings in Resources */,
 				3CA29694180933D400391033 /* UMSCommentDetailController.xib in Resources */,
 				3CA29695180933D400391033 /* UMSCommentInputController.xib in Resources */,
 				3CA29696180933D400391033 /* UMSCommentInputControlleriPad.xib in Resources */,
@@ -466,7 +463,6 @@
 		3CA2966E180933D400391033 /* UMSocialLocalizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				3CA2966F180933D400391033 /* en */,
 				3CA2968E180933D400391033 /* zh-Hans */,
 			);
 			name = UMSocialLocalizable.strings;
