@@ -73,11 +73,6 @@
     NSLog(@"status: %c",_socialBar.hidden);
 }
 
--(void) share:(NSString *)text image:(NSString *)img
-{
-    
-}
-
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
 //    UITouch* any_touch = [touches anyObject];
@@ -90,7 +85,7 @@
     }
 }
 
--(void) share:(NSString*)dataID shareText:(NSString *)text imageUrl:(NSString *)imageUrl title:(NSString *)title
+-(void) share:(NSString*)dataID shareText:(NSString *)text imageUrl:(NSString *)imageUrl title:(NSString *)title type:(NSString *) type
 {
     if(!title)
         title = @"分享给你有意思的儿童安全内容";
@@ -103,7 +98,12 @@
         socialData.shareImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrl]]];
     UMSocialControllerService *scs = [[UMSocialControllerService alloc] initWithUMSocialData:socialData];
     scs.socialUIDelegate = self;
-    UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToSina];
+    if(!type)
+        type = UMShareToSina;
+//    else
+//        type = [UMSocialSnsPlatformManager getSnsPlatformStringFromIndex:type.intValue];
+//    NSLog(@"Share to : %@, %@, %@, %@",UMShareToSina, UMShareToTencent, UMShareToQzone, UMShareToEmail);
+    UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:type];
     snsPlatform.snsClickHandler(self.window.rootViewController, scs, YES);
     
 }

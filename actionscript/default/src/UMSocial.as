@@ -35,7 +35,7 @@ package
 			return _instance;
 		}
 
-		public function init(appkey:String=""):void
+		public function init(appkey:String="", useSocialBar:Boolean=true):void
 		{
 //			if (extensionContext)
 //				extensionContext.call('init', appkey, channelID, isDebug);
@@ -55,7 +55,7 @@ package
 		{
 		}
 
-		public function share(id:String, shareText:String='', imageUrl:String='', title:String=''):void
+		public function share(id:String, shareText:String='', imageUrl:String='', title:String='', type:String='sina'):void
 		{
 		}
 

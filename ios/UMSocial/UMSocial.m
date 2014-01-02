@@ -25,8 +25,16 @@ FREObject init(FREContext context, void* funcData, uint32_t argc, FREObject argv
         [UMSocialData setAppKey:appKeyString];
     }
     
-    SocialControler* sc = funcData;
-    [sc initBar];
+    uint32_t useSocialBar = 0;
+    BOOL status = YES;
+    
+    if(argv[0] && (FREGetObjectAsUint32(argv[0], &useSocialBar)==FRE_OK)){
+        status = useSocialBar == 1;
+        if(status){
+            SocialControler* sc = funcData;
+            [sc initBar];
+        }
+    }
     
     NSLog(@"Called Init Function Finished %@", appKeyString);
     
@@ -107,6 +115,9 @@ FREObject share(FREContext context, void* funcData, uint32_t argc, FREObject arg
     const uint8_t* title;
     NSString *titleString = nil;
     
+    const uint8_t* type;
+    NSString *typeString = nil;
+    
     if(argv[0] && (FREGetObjectAsUTF8(argv[0], &stringLength, &dataID) == FRE_OK)){
         dataIDString = [NSString stringWithUTF8String:(char*)dataID];
     }
@@ -123,10 +134,14 @@ FREObject share(FREContext context, void* funcData, uint32_t argc, FREObject arg
         titleString = [NSString stringWithUTF8String:(char*)title];
     }
     
-    SocialControler* sc = funcData;
-    [sc share:dataIDString shareText:shareTextString imageUrl:imageUrlString title:titleString];
+    if(argv[4] && (FREGetObjectAsUTF8(argv[4], &stringLength, &type) == FRE_OK)){
+        typeString = [NSString stringWithUTF8String:(char*)type];
+    }
     
-    NSLog(@"Called share Function DataID: %@, shareText: %@, imageURL: %@, title: %@", dataIDString, shareTextString, imageUrlString, titleString);
+    SocialControler* sc = funcData;
+    [sc share:dataIDString shareText:shareTextString imageUrl:imageUrlString title:titleString type:typeString];
+    
+    NSLog(@"Called share Function DataID: %@, shareText: %@, imageURL: %@, title: %@, type: %@", dataIDString, shareTextString, imageUrlString, titleString, typeString);
     
     return nil;
 }

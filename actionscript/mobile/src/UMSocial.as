@@ -6,22 +6,8 @@ package
 
 
 	/**
-	 *  Android使用时必须加入如下权限，APP_KEY在配置文件里写好
 	 *  时间都是毫秒
-	 *
-	 *  <application ……>
-			……
-		<activity ……/>
-		<meta-data android:value="YOUR_APP_KEY" android:name="UMENG_APPKEY"></meta-data>
-		<meta-data android:value="Channel ID" android:name="UMENG_CHANNEL"/>
-		</application>
-	 *  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
-		<uses-permission android:name="android.permission.INTERNET"></uses-permission>
-		<uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
-		<uses-permission android:name="android.permission.READ_LOGS"></uses-permission>
-	 *
 	 * @author mani
-	 *
 	 */
 	public class UMSocial extends EventDispatcher
 	{
@@ -64,10 +50,10 @@ package
 			trace(event.code, event.level);
 		}
 
-		public function init(appkey:String=""):void
+		public function init(appkey:String="", useSocialBar:Boolean=true):void
 		{
 			if (extensionContext)
-				extensionContext.call('init', appkey);
+				extensionContext.call('init', appkey, useSocialBar ? 1 : 0);
 		}
 
 		/**
@@ -99,11 +85,12 @@ package
 		 * @param shareText 分享文本
 		 * @param imageUrl 分享图片地址
 		 * @param title 分享邮件时使用的标题
+		 * @param type 分享的平台类型，默认新浪微博，目前只支持： sina, tencent, qzone, email
 		 */
-		public function share(id:String, shareText:String='', imageUrl:String='', title:String=''):void
+		public function share(id:String, shareText:String='', imageUrl:String='', title:String='', type:String='sina'):void
 		{
 			if (extensionContext)
-				extensionContext.call('share', id, shareText, imageUrl, title);
+				extensionContext.call('share', id, shareText, imageUrl, title, type);
 		}
 	}
 }
