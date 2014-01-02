@@ -26,6 +26,6 @@ UMSocialUIDelegate
 -(void) initBar;
 -(void) status:(BOOL)visible;
 -(void) dataID:(NSString*)dataID shareText:(NSString*)text imageUrl:(NSString*) imageUrl title:(NSString*) title;
--(void) share:(NSString*)dataID shareText:(NSString*)text imageUrl:(NSString*) imageUrl title:(NSString*) title;
+-(void) share:(NSString*)dataID shareText:(NSString*)text imageUrl:(NSString*) imageUrl title:(NSString*) title type:(NSString*) type;
 
 @end

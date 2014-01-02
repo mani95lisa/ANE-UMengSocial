@@ -34,20 +34,20 @@
     
     size = [UIScreen mainScreen].bounds.size;
     size = UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? size : CGSizeMake(size.height, size.width);
-    
+    [UMSocialData openLog:NO];
+    [UMSocialConfig setSupportedInterfaceOrientations:UIInterfaceOrientationMaskAll];
+    [UMSocialConfig setSnsPlatformNames:@[UMShareToSina,UMShareToTencent,UMShareToQzone,UMShareToEmail]];
+    [UMSocialConfig setSupportSinaSSO:NO];
+    socialData = [[UMSocialData alloc] initWithIdentifier:@"share"];
     return self;
 }
 
 -(void) initBar
 {
-    [UMSocialData openLog:NO];
-    [UMSocialConfig setSupportedInterfaceOrientations:UIInterfaceOrientationMaskAll];
-    [UMSocialConfig setSnsPlatformNames:@[UMShareToSina,UMShareToTencent,UMShareToQzone,UMShareToEmail]];
-    [UMSocialConfig setSupportSinaSSO:NO];
+    
     UIViewController *uic = self.window.rootViewController;
     [uic addChildViewController:self];
     [uic.view addSubview:self.view];
-    socialData = [[UMSocialData alloc] initWithIdentifier:@"share"];
     _socialBar = [[UMSocialBar alloc] initWithUMSocialData:socialData withViewController:self.window.rootViewController];
     _socialBar.socialUIDelegate = self;
     _socialBar.hidden = YES;
@@ -85,7 +85,7 @@
     }
 }
 
--(void) share:(NSString*)dataID shareText:(NSString *)text imageUrl:(NSString *)imageUrl title:(NSString *)title type:(NSString *) type
+-(void) share:(NSString*)dataID shareText:(NSString *)text imageUrl:(NSString *)imageUrl title:(NSString *)title type:(NSString *)type
 {
     if(!title)
         title = @"分享给你有意思的儿童安全内容";
