@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UMSocial.h"
 
 @interface UMSocialTabBarController : UITabBarController
+<
+    UMSocialUIDelegate
+>
 
 @end

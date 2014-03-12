@@ -9,7 +9,10 @@
 #import "UMSocial.h"
 #import "FlashRuntimeExtensions.h"
 #import "SocialControler.h"
+#import "Login.h"
 #import "UMSocialData.h"
+#import "UMSocialConfig.h"
+
 
 @implementation UMSocial
 
@@ -36,6 +39,8 @@ FREObject init(FREContext context, void* funcData, uint32_t argc, FREObject argv
         }
     }
     
+    [UMSocialConfig setSupportSinaSSO:NO];
+    
     NSLog(@"Called Init Function Finished %@", appKeyString);
     
     return nil;
@@ -55,6 +60,44 @@ FREObject status(FREContext context, void* funcData, uint32_t argc, FREObject ar
     [sc status:status];
 
     NSLog(@"Called status Function %c, %d", status, statusInt);
+    
+    return nil;
+}
+
+FREObject login(FREContext context, void* funcData, uint32_t argc, FREObject argv[]){
+    
+    NSLog(@"Call login Function");
+    
+    const uint8_t* platform;
+    uint32_t stringLength;
+    NSString *platformString = nil;
+    
+    if(argv[0] && (FREGetObjectAsUTF8(argv[0], &stringLength, &platform) == FRE_OK)){
+        platformString = [NSString stringWithUTF8String:(char*)platform];
+    }
+    
+    Login* sc = funcData;
+    [sc doLogin:platformString];
+    
+    return nil;
+}
+
+FREObject cancelLogin(FREContext context, void* funcData, uint32_t argc, FREObject argv[]){
+    
+    NSLog(@"Call cancelLogin Function");
+    
+    const uint8_t* platform;
+    uint32_t stringLength;
+    NSString *platformString = nil;
+    
+    if(argv[0] && (FREGetObjectAsUTF8(argv[0], &stringLength, &platform) == FRE_OK)){
+        platformString = [NSString stringWithUTF8String:(char*)platform];
+    }
+    
+        NSLog(@"Call cancelLogin Function %@", platformString);
+    
+    Login* sc = funcData;
+    [sc cancelLogin:platformString];
     
     return nil;
 }
@@ -148,7 +191,7 @@ FREObject share(FREContext context, void* funcData, uint32_t argc, FREObject arg
 
 void AirUMSocialContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx, uint32_t* numFunctionsToTest,
                              const FRENamedFunction** functionsToSet){
-    uint numOfFun = 4;
+    uint numOfFun = 6;
     
     FRENamedFunction* func = (FRENamedFunction*) malloc(sizeof(FRENamedFunction) * numOfFun);
     *numFunctionsToTest = numOfFun;
@@ -177,6 +220,17 @@ void AirUMSocialContextInitializer(void* extData, const uint8_t* ctxType, FRECon
     func[3].functionData = socialControler;
     func[3].function = &share;
     
+    Login* lc = [[Login alloc] init];
+    lc.freContext = ctx;
+    lc.window = win;
+    
+    func[4].name = (const uint8_t*) "login";
+    func[4].functionData = lc;
+    func[4].function = &login;
+    
+    func[5].name =(const uint8_t*) "cancelLogin";
+    func[5].functionData = lc;
+    func[5].function = &cancelLogin;
     
     *functionsToSet = func;
     

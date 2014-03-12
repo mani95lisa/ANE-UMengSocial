@@ -13,7 +13,6 @@
 #import "UMSocialTabBarController.h"
 #import "UMSocialSnsService.h"
 #import "UMSocialData.h"
-#import "WXApi.h"
 #import "UMSocialConfig.h"
 #import "FlashRuntimeExtensions.h"
 

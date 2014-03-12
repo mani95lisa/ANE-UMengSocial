@@ -8,6 +8,7 @@
 
 #import "UMSocialBarViewController.h"
 #import "UMSocialSnsViewController.h"
+//#import "AppDelegate.h"
 
 @interface UMSocialBarViewController ()
 

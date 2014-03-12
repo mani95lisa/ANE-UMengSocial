@@ -10,6 +10,7 @@
 #import "FlashRuntimeExtensions.h"
 #import "UMSocialSnsService.h"
 #import "UMSocialBarViewController.h"
+#import "UMSocialBar.h"
 
 @interface SocialControler : UIViewController
 <

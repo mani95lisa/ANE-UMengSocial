@@ -59,6 +59,19 @@ package
 		{
 		}
 
+		/**
+		 * 第三方平台登录
+		 * @param platform 平台名称，目前只支持：sina,tencent,qzone,renren,douban
+		 * @callback 返回登录结果
+		 */
+		public function login(platform:String, callback:Function):void
+		{
+		}
+
+		public function cancelLogin(platform:String, callback:Function):void
+		{
+		}
+
 	}
 }
 

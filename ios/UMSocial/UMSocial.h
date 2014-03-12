@@ -10,6 +10,4 @@
 
 @interface UMSocial : NSObject
 
-
-
 @end

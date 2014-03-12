@@ -40,14 +40,18 @@ package
 
 		public static var sharedOK:Function;
 
+		public static var keepCallback:Function;
+
 		protected static function onStatus(event:StatusEvent):void
 		{
-			if (sharedOK != null)
-			{
-				if (event.code == 'shared' && event.level == '200')
-					sharedOK();
-			}
+			if (event.code == 'shared' && event.level == '200')
+				sharedOK();
+			else if(event.code == 'AuthResult' && keepCallback != null)
+				keepCallback(event.level);
+			else if(event.code == 'CancelAuthResult' && keepCallback != null)
+				keepCallback(event.level);
 			trace(event.code, event.level);
+			keepCallback = null;
 		}
 
 		public function init(appkey:String="", useSocialBar:Boolean=true):void
@@ -91,6 +95,25 @@ package
 		{
 			if (extensionContext)
 				extensionContext.call('share', id, shareText, imageUrl, title, type);
+		}
+
+		/**
+		 * 第三方平台登录
+		 * @param platform 平台名称，目前只支持：sina,tencent,qzone,renren,douban
+		 * @callback 返回登录结果
+		 */
+		public function login(platform:String, callback:Function):void
+		{
+			keepCallback = callback;
+			if (extensionContext)
+				extensionContext.call('login', platform);
+		}
+
+		public function cancelLogin(platform:String, callback:Function):void
+		{
+			keepCallback = callback;
+			if (extensionContext)
+				extensionContext.call('cancelLogin', platform);
 		}
 	}
 }

@@ -10,24 +10,60 @@
 #import "UMSocialLoginViewController.h"
 #import "UMSocialSnsViewController.h"
 #import "UMSocialBarViewController.h"
+#import "UMSocial.h"
 
 @implementation UMSocialTabBarController
 
 - (void)viewDidLoad
 {
-    UMSocialSnsViewController *snsViewController = [[UMSocialSnsViewController alloc] initWithNibName:@"UMSocialSnsViewController" bundle:nil];
-    
-    UMSocialLoginViewController *loginViewController = [[UMSocialLoginViewController alloc] initWithNibName:@"UMSocialLoginViewController" bundle:nil];
-    loginViewController.title = @"授权";
-    loginViewController.tabBarItem.image = [UIImage imageNamed:@"UMS_account"];
-    
-    UMSocialBarViewController *barViewController = [[UMSocialBarViewController alloc] initWithNibName:@"UMSocialBarViewController" bundle:nil];
-    barViewController.title = @"操作栏";
-    barViewController.tabBarItem.image = [UIImage imageNamed:@"UMS_bar"];
-        
-    [self setViewControllers:[NSArray arrayWithObjects:snsViewController,loginViewController,barViewController,nil]];
-    
     [super viewDidLoad];
+    
+    BOOL isOauth = [UMSocialAccountManager isOauthWithPlatform:UMShareToSina];
+    NSLog(@"isOauth %hhd", isOauth);
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+//    UINavigationController *oauthController = [[UMSocialControllerService defaultControllerService] getSocialOauthController:UMShareToSina];
+//    [self presentModalViewController:oauthController animated:YES];
+//    [UMSocialControllerService defaultControllerService].socialUIDelegate = self;      //设置回调对象
+}
+
+//实现回调方法
+-(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
+{
+    if (response.viewControllerType == UMSViewControllerOauth) {
+        NSLog(@"didFinishOauthAndGetAccount response is %@",response);
+    }
+}
+
+-(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    NSLog(@"bbbb");
+    
+    
+    
+    
+    return;
+    
+    [UMSocialControllerService defaultControllerService].socialUIDelegate = self;
+    UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToSina];
+    snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
+        NSLog(@"login response is %@",response);
+        //          获取微博用户名、uid、token等
+        if (response.responseCode == UMSResponseCodeSuccess) {
+            UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:UMShareToSina];
+            NSLog(@"username is %@, uid is %@, token is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken);
+        }
+        //这里可以获取到腾讯微博openid,Qzone的token等
+        /*
+         if ([platformName isEqualToString:UMShareToTencent]) {
+         [[UMSocialDataService defaultDataService] requestSnsInformation:UMShareToTencent completion:^(UMSocialResponseEntity *respose){
+         NSLog(@"get openid  response is %@",respose);
+         }];
+         }
+         */
+    });
 }
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration

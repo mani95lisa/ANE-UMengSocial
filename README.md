@@ -3,6 +3,35 @@ ANE-UMengSocial
 
 UMengSocial Analytics Adobe Air Extension
 
+新增第三方账号登陆功能，该功能暂时仅支持iOS平台，可以只下载IOS.ane使用
+
+```
+UMSocial.instance.cancelLogin('sina', function(result:String):void{
+	//取消授权，返回{}则表示成功
+}); 
+UMSocial.instance.login('sina', function(result:String){
+	//登陆获取授权，返回如下对象，如果已经登陆再调用即可获得用户token之类的值
+{
+    sina =     {
+        birthday = "<null>";
+        company = "<null>";
+        education = "<null>";
+        gender = 0;
+        icon = "http://tp4.sinaimg.cn/2072488563/180/40012495145/1";
+        "profile_url" = "http://www.weibo.com/u/2072488563";
+        tags =         (
+            "\U65f6\U5c1a",
+            "\U6c7d\U8f66"
+        );
+        username = "\U6298\U7ffc\U4f34\U4f60\U884c";
+        usid = 2072488563;
+    };
+}
+});
+
+```
+
+
 目前支持的功能:
 
 - 直接弹出分享框分享，支持多平台（Android版仅支持分享到新浪微博）
