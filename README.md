@@ -12,21 +12,15 @@ UMSocial.instance.cancelLogin('sina', function(result:String):void{
 UMSocial.instance.login('sina', function(result:String){
 	//登陆获取授权，返回如下对象，如果已经登陆再调用即可获得用户token之类的值
 {
-    sina =     {
-        birthday = "<null>";
-        company = "<null>";
-        education = "<null>";
-        gender = 0;
-        icon = "http://tp4.sinaimg.cn/2072488563/180/40012495145/1";
-        "profile_url" = "http://www.weibo.com/u/2072488563";
-        tags =         (
-            "\U65f6\U5c1a",
-            "\U6c7d\U8f66"
-        );
-        username = "\U6298\U7ffc\U4f34\U4f60\U884c";
-        usid = 2072488563;
-    };
-}
+    accessToken = "2.00twwPQC03t9ZI6ef9cf7509eaFhTB";
+    iconURL = "http://tp4.sinaimg.cn/2072488563/180/40012495145/1";
+    platformName = sina;
+    profileURL = "http://www.weibo.com/u/2072488563";
+    userName = "\U6298\U7ffc\U4f34\U4f60\U884c";
+    usid = 2072488563;
+
+{
+   
 });
 
 ```

@@ -20,6 +20,7 @@
 @implementation Login
 
 @synthesize window = _window;
+@synthesize loginPlatform = _loginPlatform;
 
 -(void) cancelLogin:(NSString *)platform
 {
@@ -41,6 +42,7 @@
     NSLog(@"to get isOauth");
     
     BOOL isOauth = [UMSocialAccountManager isOauthWithPlatform:platform];
+    self.loginPlatform = platform;
     NSLog(@"isOauth %hhd", isOauth);
     
     if(isOauth){
@@ -63,8 +65,11 @@
 {
     if (response.viewControllerType == UMSViewControllerOauth) {
         NSLog(@"Response %@", response);
-        NSString *result = [NSString stringWithFormat:@"%@", [response data]];
-        FREDispatchStatusEventAsync(self.freContext, AuthResult, (const uint8_t *)[result UTF8String]);
+//        NSString *result = [NSString stringWithFormat:@"%@", [response data]];
+        NSDictionary *snsAccountDic = [UMSocialAccountManager socialAccountDictionary];
+        UMSocialAccountEntity *sinaAccount = [snsAccountDic valueForKey:self.loginPlatform];
+        FREDispatchStatusEventAsync(self.freContext, AuthResult, (const uint8_t *)[[sinaAccount description] UTF8String]);
+//        FREDispatchStatusEventAsync(self.freContext, AuthResult, (const uint8_t *)[result UTF8String]);
     }
 }
 

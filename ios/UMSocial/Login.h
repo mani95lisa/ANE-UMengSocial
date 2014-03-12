@@ -18,6 +18,7 @@ UMSocialUIDelegate
 
 @property ( nonatomic, assign ) FREContext      *freContext;
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) NSString *loginPlatform;
 
 -(void) doLogin:(NSString*) platform;
 
