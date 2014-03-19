@@ -63,11 +63,16 @@
 
 -(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
 {
+    NSLog(@"Response %@, %d", response, UMSViewControllerOauth);
     if (response.viewControllerType == UMSViewControllerOauth) {
-        NSLog(@"Response %@", response);
 //        NSString *result = [NSString stringWithFormat:@"%@", [response data]];
         NSDictionary *snsAccountDic = [UMSocialAccountManager socialAccountDictionary];
         UMSocialAccountEntity *sinaAccount = [snsAccountDic valueForKey:self.loginPlatform];
+
+        NSLog(@"Removed From Superview");
+        [self.view removeFromSuperview];
+        [self release];
+        
         FREDispatchStatusEventAsync(self.freContext, AuthResult, (const uint8_t *)[[sinaAccount description] UTF8String]);
 //        FREDispatchStatusEventAsync(self.freContext, AuthResult, (const uint8_t *)[result UTF8String]);
     }

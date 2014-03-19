@@ -76,8 +76,11 @@ FREObject login(FREContext context, void* funcData, uint32_t argc, FREObject arg
         platformString = [NSString stringWithUTF8String:(char*)platform];
     }
     
-    Login* sc = funcData;
-    [sc doLogin:platformString];
+    Login* lc = [[Login alloc] init];
+    lc.freContext = context;
+    lc.window = funcData;
+    
+    [lc doLogin:platformString];
     
     return nil;
 }
@@ -96,8 +99,11 @@ FREObject cancelLogin(FREContext context, void* funcData, uint32_t argc, FREObje
     
         NSLog(@"Call cancelLogin Function %@", platformString);
     
-    Login* sc = funcData;
-    [sc cancelLogin:platformString];
+    Login* lc = [[Login alloc] init];
+    lc.freContext = context;
+    lc.window = funcData;
+    
+    [lc cancelLogin:platformString];
     
     return nil;
 }
@@ -220,16 +226,12 @@ void AirUMSocialContextInitializer(void* extData, const uint8_t* ctxType, FRECon
     func[3].functionData = socialControler;
     func[3].function = &share;
     
-    Login* lc = [[Login alloc] init];
-    lc.freContext = ctx;
-    lc.window = win;
-    
     func[4].name = (const uint8_t*) "login";
-    func[4].functionData = lc;
+    func[4].functionData = win;
     func[4].function = &login;
     
     func[5].name =(const uint8_t*) "cancelLogin";
-    func[5].functionData = lc;
+    func[5].functionData = win;
     func[5].function = &cancelLogin;
     
     *functionsToSet = func;
