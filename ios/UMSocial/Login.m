@@ -33,6 +33,7 @@
     [[UMSocialDataService defaultDataService] requestUnOauthWithType:platformType completion:^(UMSocialResponseEntity *response) {
         NSLog(@"unOauth response is %@",response);
         NSString *result = [NSString stringWithFormat:@"%@", [response data]];
+        [self release];
         FREDispatchStatusEventAsync(self.freContext, CancelAuthResult, (const uint8_t *)[result UTF8String]);
     }];
 }

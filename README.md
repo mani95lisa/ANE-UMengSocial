@@ -5,12 +5,12 @@ UMengSocial Analytics Adobe Air Extension
 
 新增第三方账号登陆功能，该功能暂时仅支持iOS平台，可以只下载IOS.ane使用
 
-```
+```actionscript
 UMSocial.instance.cancelLogin('sina', function(result:String):void{
 	//取消授权，返回{}则表示成功
 }); 
 UMSocial.instance.login('sina', function(result:String){
-	//登陆获取授权，返回如下对象，如果已经登陆再调用即可获得用户token之类的值
+	//登陆获取授权，返回如下对象，如果已经登陆再调用即可获得用户token之类的值，第一次登录后只返回登录结果
 {
     accessToken = "2.00twwPQC03t9ZI6ef9cf7509eaFhTB";
     iconURL = "http://tp4.sinaimg.cn/2072488563/180/40012495145/1";
@@ -18,7 +18,6 @@ UMSocial.instance.login('sina', function(result:String){
     profileURL = "http://www.weibo.com/u/2072488563";
     userName = "\U6298\U7ffc\U4f34\U4f60\U884c";
     usid = 2072488563;
-
 {
    
 });
