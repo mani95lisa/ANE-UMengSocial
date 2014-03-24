@@ -9,6 +9,7 @@ UMengSocial Analytics Adobe Air Extension
 UMSocial.instance.cancelLogin('sina', function(result:String):void{
 	//取消授权，返回{}则表示成功
 }); 
+//切忌不能连续调用两次该方法，否则会报错
 UMSocial.instance.login('sina', function(result:String){
 	//登陆获取授权，返回如下对象，如果已经登陆再调用即可获得用户token之类的值，第一次登录后只返回登录结果
 {
