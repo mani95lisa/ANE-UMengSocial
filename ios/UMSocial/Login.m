@@ -49,6 +49,8 @@
     if(isOauth){
         NSDictionary *snsAccountDic = [UMSocialAccountManager socialAccountDictionary];
         UMSocialAccountEntity *sinaAccount = [snsAccountDic valueForKey:platform];
+        NSLog(@"Release if oauthed %@", sinaAccount);
+        [self release];
         FREDispatchStatusEventAsync(self.freContext, AuthResult, (const uint8_t *)[[sinaAccount description] UTF8String]);
     }else{
         UIViewController *uic = self.window.rootViewController;

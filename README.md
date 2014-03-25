@@ -11,7 +11,7 @@ UMSocial.instance.cancelLogin('sina', function(result:String):void{
 }); 
 //切忌不能连续调用两次该方法，否则会报错
 UMSocial.instance.login('sina', function(result:String){
-	//登陆获取授权，返回如下对象，如果已经登陆再调用即可获得用户token之类的值，第一次登录后只返回登录结果
+	//登陆获取授权，返回如下对象，如果已经授权过则直接返回该对象
 {
     accessToken = "2.00twwPQC03t9ZI6ef9cf7509eaFhTB";
     iconURL = "http://tp4.sinaimg.cn/2072488563/180/40012495145/1";
