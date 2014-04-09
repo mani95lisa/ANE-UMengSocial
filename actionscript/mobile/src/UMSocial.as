@@ -54,10 +54,10 @@ package
 			keepCallback = null;
 		}
 
-		public function init(appkey:String="", useSocialBar:Boolean=true):void
+		public function init(appkey:String="", weixinID:String=""):void
 		{
 			if (extensionContext)
-				extensionContext.call('init', appkey, useSocialBar ? 1 : 0);
+				extensionContext.call('init', appkey, weixinID);
 		}
 
 		/**

@@ -12,15 +12,15 @@
 #import "Login.h"
 #import "UMSocialData.h"
 #import "UMSocialConfig.h"
-
+#import "UMSocialWechatHandler.h"
 
 @implementation UMSocial
 
 FREObject init(FREContext context, void* funcData, uint32_t argc, FREObject argv[]){
     NSLog(@"Call Init Function");
     
-    const uint8_t* appKey;
     uint32_t stringLength;
+    const uint8_t* appKey;
     NSString *appKeyString = nil;
     
     if(argv[0] && (FREGetObjectAsUTF8(argv[0], &stringLength, &appKey) == FRE_OK)){
@@ -28,16 +28,23 @@ FREObject init(FREContext context, void* funcData, uint32_t argc, FREObject argv
         [UMSocialData setAppKey:appKeyString];
     }
     
-    uint32_t useSocialBar = 0;
-    BOOL status = YES;
-    
-    if(argv[0] && (FREGetObjectAsUint32(argv[0], &useSocialBar)==FRE_OK)){
-        status = useSocialBar == 1;
-        if(status){
-            SocialControler* sc = funcData;
-            [sc initBar];
-        }
+    const uint8_t* wechatKey;
+    NSString *wechatKeyString = nil;
+    if(argv[1] && (FREGetObjectAsUTF8(argv[1], &stringLength, &wechatKey) == FRE_OK)){
+        wechatKeyString = [NSString stringWithUTF8String:(char*)wechatKey];
+        [UMSocialWechatHandler setWXAppId:wechatKeyString url:nil];
     }
+    
+//    uint32_t useSocialBar = 0;
+//    BOOL status = YES;
+//    
+//    if(argv[2] && (FREGetObjectAsUint32(argv[2], &useSocialBar)==FRE_OK)){
+//        status = useSocialBar == 1;
+//        if(status){
+//            SocialControler* sc = funcData;
+//            [sc initBar];
+//        }
+//    }
     
     [UMSocialConfig setSupportSinaSSO:NO];
     
@@ -187,10 +194,10 @@ FREObject share(FREContext context, void* funcData, uint32_t argc, FREObject arg
         typeString = [NSString stringWithUTF8String:(char*)type];
     }
     
+    NSLog(@"Called share Function DataID: %@, shareText: %@, imageURL: %@, title: %@, type: %@", dataIDString, shareTextString, imageUrlString, titleString, typeString);
+    
     SocialControler* sc = funcData;
     [sc share:dataIDString shareText:shareTextString imageUrl:imageUrlString title:titleString type:typeString];
-    
-    NSLog(@"Called share Function DataID: %@, shareText: %@, imageURL: %@, title: %@, type: %@", dataIDString, shareTextString, imageUrlString, titleString, typeString);
     
     return nil;
 }

@@ -41,22 +41,22 @@
     return self;
 }
 
--(void) initBar
-{
-    
-    UIViewController *uic = self.window.rootViewController;
-    [uic addChildViewController:self];
-    [uic.view addSubview:self.view];
-    _socialBar = [[UMSocialBar alloc] initWithUMSocialData:socialData withViewController:self.window.rootViewController];
-    _socialBar.socialUIDelegate = self;
-    _socialBar.hidden = YES;
-    [self.view addSubview:_socialBar];
-    UIApplication *uia = [UIApplication sharedApplication];
-    if(uia.statusBarHidden)
-        [self.view setFrame:CGRectMake(352, 713, 320, 50)];
-    else
-        [self.view setFrame:CGRectMake(352, 698, 320, 50)];
-}
+//-(void) initBar
+//{
+//    
+//    UIViewController *uic = self.window.rootViewController;
+//    [uic addChildViewController:self];
+//    [uic.view addSubview:self.view];
+//    _socialBar = [[UMSocialBar alloc] initWithUMSocialData:socialData withViewController:self.window.rootViewController];
+//    _socialBar.socialUIDelegate = self;
+//    _socialBar.hidden = YES;
+//    [self.view addSubview:_socialBar];
+//    UIApplication *uia = [UIApplication sharedApplication];
+//    if(uia.statusBarHidden)
+//        [self.view setFrame:CGRectMake(352, 713, 320, 50)];
+//    else
+//        [self.view setFrame:CGRectMake(352, 698, 320, 50)];
+//}
 
 -(void) viewDidLoad
 {
@@ -97,14 +97,16 @@
         socialData.shareImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrl]]];
     UMSocialControllerService *scs = [[UMSocialControllerService alloc] initWithUMSocialData:socialData];
     scs.socialUIDelegate = self;
-    if(!type)
-        type = UMShareToSina;
-//    else
-//        type = [UMSocialSnsPlatformManager getSnsPlatformStringFromIndex:type.intValue];
-//    NSLog(@"Share to : %@, %@, %@, %@",UMShareToSina, UMShareToTencent, UMShareToQzone, UMShareToEmail);
-    UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:type];
-    snsPlatform.snsClickHandler(self.window.rootViewController, scs, YES);
-    
+    if ([type  isEqual: @"weixin_friend"]){
+        [[UMSocialControllerService defaultControllerService] setShareText:text shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrl]]] socialUIDelegate:nil];     //设置分享内容和回调对象
+        [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToWechatTimeline].snsClickHandler(self,[UMSocialControllerService defaultControllerService],YES);
+    }else{
+        if(!type){
+            type = UMShareToSina;
+        }
+        UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:type];
+        snsPlatform.snsClickHandler(self.window.rootViewController, scs, YES);
+    }
 }
 
 -(void) dataID:(NSString*)dataID shareText:(NSString *)text imageUrl:(NSString *)imageUrl title:(NSString *)title
@@ -124,8 +126,30 @@
     NSLog(@"dataID2: %@",dataID);
 }
 
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    [UMSocialSnsService  applicationDidBecomeActive];
+}
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return  [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
+}
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    return  [UMSocialSnsService handleOpenURL:url wxApiDelegate:nil];
+}
+
 -(void) didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
 {
+    //根据`responseCode`得到发送结果,如果分享成功
+    if(response.responseCode == UMSResponseCodeSuccess)
+    {
+        //得到分享到的微博平台名
+        NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
+    }
     if(response.responseCode == 200)
         FREDispatchStatusEventAsync(self.freContext, shared, (uint8_t*)ok);
 }

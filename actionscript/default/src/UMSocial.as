@@ -35,10 +35,8 @@ package
 			return _instance;
 		}
 
-		public function init(appkey:String="", useSocialBar:Boolean=true):void
+		public function init(appkey:String="", weixinID:String=""):void
 		{
-//			if (extensionContext)
-//				extensionContext.call('init', appkey, channelID, isDebug);
 		}
 
 		public static var sharedOK:Function;
