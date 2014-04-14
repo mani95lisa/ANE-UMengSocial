@@ -28,11 +28,17 @@ FREObject init(FREContext context, void* funcData, uint32_t argc, FREObject argv
         [UMSocialData setAppKey:appKeyString];
     }
     
+    const uint8_t* wxurl;
+    NSString *wxurlString = nil;
+    if(argv[2] && (FREGetObjectAsUTF8(argv[2], &stringLength, &wxurl) == FRE_OK)){
+        wxurlString = [NSString stringWithUTF8String:(char*)wxurl];
+    }
+    
     const uint8_t* wechatKey;
     NSString *wechatKeyString = nil;
     if(argv[1] && (FREGetObjectAsUTF8(argv[1], &stringLength, &wechatKey) == FRE_OK)){
         wechatKeyString = [NSString stringWithUTF8String:(char*)wechatKey];
-        [UMSocialWechatHandler setWXAppId:wechatKeyString url:nil];
+        [UMSocialWechatHandler setWXAppId:wechatKeyString url:wxurlString];
     }
     
 //    uint32_t useSocialBar = 0;

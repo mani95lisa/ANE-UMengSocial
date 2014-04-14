@@ -54,10 +54,10 @@ package
 			keepCallback = null;
 		}
 
-		public function init(appkey:String="", weixinID:String=""):void
+		public function init(appkey:String="", weixinID:String="", weixinURL:String=""):void
 		{
 			if (extensionContext)
-				extensionContext.call('init', appkey, weixinID);
+				extensionContext.call('init', appkey, weixinID, weixinURL);
 		}
 
 		/**

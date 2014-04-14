@@ -35,7 +35,7 @@ package
 			return _instance;
 		}
 
-		public function init(appkey:String="", weixinID:String=""):void
+		public function init(appkey:String="", weixinID:String="", weixinURL:String=""):void
 		{
 		}
 

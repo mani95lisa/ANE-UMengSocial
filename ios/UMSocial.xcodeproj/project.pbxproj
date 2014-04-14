@@ -12,6 +12,7 @@
 		3C70DD80179C2C6900BDFCEC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C70DD78179C2C5100BDFCEC /* CoreLocation.framework */; };
 		3C70DD81179C2C6900BDFCEC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C70DD76179C2C4900BDFCEC /* MapKit.framework */; };
 		3C70DD82179C2C6900BDFCEC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C70DD74179C2C4100BDFCEC /* MessageUI.framework */; };
+		3C75AAAB18FB86190057081B /* UMSocialSDKResourcesNew.bundle in Copy Files */ = {isa = PBXBuildFile; fileRef = 3C97FEA318F503A900921F4A /* UMSocialSDKResourcesNew.bundle */; };
 		3C7AE6091797E4E10073E93E /* UMSocial.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C7AE6081797E4E10073E93E /* UMSocial.m */; };
 		3C7AE6591797EA9A0073E93E /* SocialControler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C7AE6571797EA9A0073E93E /* SocialControler.m */; };
 		3C7AE6E51797FC590073E93E /* UMSocialBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C7AE65D1797EAC00073E93E /* UMSocialBarViewController.xib */; };
@@ -55,6 +56,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
+				3C75AAAB18FB86190057081B /* UMSocialSDKResourcesNew.bundle in Copy Files */,
 				3CF888E2179C2D5D008E4250 /* UMSCommentDetailController.nib in Copy Files */,
 				3CF888E3179C2D5D008E4250 /* UMSCommentInputController.nib in Copy Files */,
 				3CF888E4179C2D5D008E4250 /* UMSCommentInputControlleriPad.nib in Copy Files */,
