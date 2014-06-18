@@ -95,15 +95,16 @@
         socialData.shareText = text;
     if(imageUrl)
         socialData.shareImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrl]]];
-    UMSocialControllerService *scs = [[UMSocialControllerService alloc] initWithUMSocialData:socialData];
-    scs.socialUIDelegate = self;
+
     if ([type  isEqual: @"weixin_friend"]){
         [[UMSocialControllerService defaultControllerService] setShareText:text shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrl]]] socialUIDelegate:nil];     //设置分享内容和回调对象
-        [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToWechatTimeline].snsClickHandler(self,[UMSocialControllerService defaultControllerService],YES);
+        [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToWechatTimeline].snsClickHandler(self.window.rootViewController,[UMSocialControllerService defaultControllerService],YES);
     }else{
         if(!type){
             type = UMShareToSina;
         }
+        UMSocialControllerService *scs = [[UMSocialControllerService alloc] initWithUMSocialData:socialData];
+        scs.socialUIDelegate = self;
         UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:type];
         snsPlatform.snsClickHandler(self.window.rootViewController, scs, YES);
     }
