@@ -1,7 +1,9 @@
 ANE-UMengSocial
 ===============
 
-UMengSocial Analytics Adobe Air Extension
+Android 版本更完善的ANE： https://github.com/platformanes/UmengSocialANE
+
+新增分享到微信，在init方法里传入微信的ID和URL就行了
 
 新增第三方账号登陆功能，该功能暂时仅支持iOS平台，可以只下载IOS.ane使用
 
